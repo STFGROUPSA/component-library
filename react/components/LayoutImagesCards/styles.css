@@ -1,0 +1,99 @@
+.containerCards {
+    display: flex;
+    gap: 60px;
+
+    .containerPrimaryImage {
+      flex: 1;
+      width: 60%;
+      @media (max-width: 991px) {
+        width: 100%;
+      }
+
+      /* .slide--visible, .slide--hidden {
+        @media (min-width: 1024px) {
+          & {
+            width: 945px !important;
+          }
+        }
+      } */
+
+      .primaryImage {
+        @media (min-width: 1024px) {
+          & {
+            width: 945px;
+          }
+        }
+      }
+
+      .sliderArrows svg {
+        display: none;
+      }
+
+      .sliderLeftArrow::after {
+        content: url('data:image/svg+xml,<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="40" height="40" rx="20" fill="white" fill-opacity="0.3"/><path d="M23 14L17 20L23 26" stroke="white" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+      }
+
+      .sliderRightArrow::before {
+        content: url('data:image/svg+xml,<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="40" height="40" rx="20" fill="white" fill-opacity="0.3"/><path d="M17 14L23 20L17 26" stroke="white" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+      }
+
+      .paginationDotsContainer {
+        bottom: -20px;
+
+        @media (min-width: 1024px) {
+          & {
+            bottom: -30px;
+          }
+        }
+
+        .paginationDot {
+          width: 30px !important;
+          height: 2px !important;
+          border-radius: 0px;
+          padding: 0px;
+          background-color: #ffffff80;
+        }
+
+        .paginationDot--isActive {
+          background-color: #ffffff;
+        }
+      }
+    }
+
+    .containerSecundaryImages {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 30px;
+
+      .secundaryImage {
+        text-decoration: none;
+        text-align: center;
+        max-width: 300px;
+        p {
+          margin-top: 10px;
+          font-size: 14px;
+          color: #fff;
+          text-align: center;
+        }
+
+        img {
+          margin-bottom: 5px;
+          width: 100%;
+        }
+
+        @media (max-width: 1440px) {
+          & img {
+            width: 70%;
+          }
+        }
+        @media (max-width: 991px) {
+          & img {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }

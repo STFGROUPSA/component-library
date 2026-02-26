@@ -1,0 +1,92 @@
+.container-carousel {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-block: 30px;
+    margin-block: 10px;
+
+    .active-shelf {
+      gap: 10px;
+
+      @media (min-width: 1024px) {
+        .image-link {
+          min-width: 450px !important;
+        }
+      }
+    }
+
+    .container-image {
+      display: flex;
+      overflow-x: scroll;
+      width: 100%;
+
+      &::-webkit-scrollbar {
+        display: none;
+        /* Oculta la barra de desplazamiento en navegadores basados en WebKit */
+      }
+
+      .image-link {
+        display: flex;
+        flex-direction: column;
+        min-width: 300px;
+        /* min-height: 450px; */
+        text-decoration: none;
+
+        .container-info {
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+          padding: 8px;
+
+          .product-name {
+            font-size: 16px;
+            color: #000000;
+          }
+
+          .product-price {
+            font-size: 16px;
+            font-weight: 600;
+            color: #000000;
+          }
+        }
+      }
+    }
+
+    .container-butonns {
+      position: absolute;
+      right: 30px;
+      top: 0;
+
+      .button-scroll-left,
+      .button-scroll-right {
+        background: transparent;
+        border: none;
+        transform: scale(1.5);
+        cursor: pointer;
+        padding-inline: 10px;
+      }
+
+      @media (max-width: 1023px) {
+        & {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .scroll-progress-container {
+    margin-inline: 20px;
+    height: 4px;
+    background-color: #e5e5e5;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .scroll-progress-bar {
+    height: 100%;
+    width: 0%;
+    background-color: #000000;
+    /* ajusta al color de tu marca */
+    transition: width 0.1s linear;
+  }

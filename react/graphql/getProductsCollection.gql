@@ -1,0 +1,21 @@
+query getProductsCollection($collection: String, $totalProducts: Int) {
+  products(collection: $collection, to: $totalProducts)
+    @context(provider: "vtex.search-graphql") {
+    link
+    productName
+    priceRange {
+      listPrice {
+        highPrice
+        lowPrice
+      }
+    }
+    clusterHighlights {
+      id
+    }
+    items {
+      images {
+        imageUrl
+      }
+    }
+  }
+}
