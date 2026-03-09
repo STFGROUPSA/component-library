@@ -3,10 +3,14 @@ import { getSchema } from './schemas'
 import { AutomaticCarousel } from './components/AutomaticCarousel';
 import { LayoutImagesCards } from './components/LayoutImagesCards';
 
+/* ----- Sections ----- */
+import { SectionTwo } from './components/Sections/2';
+/* ----- Sections ----- */
+
 
 const Item = ({ ctx }: any) => {
 
-    const filteredComponents = ctx?.filter((tab:any) => tab.show) ?? [];
+    const filteredComponents = ctx?.filter((tab: any) => tab.show) ?? [];
 
     return (
         <div>
@@ -19,6 +23,9 @@ const Item = ({ ctx }: any) => {
                     case "Layout Images Cards":
                         return <LayoutImagesCards key={index} dataComponent={comp} />
 
+                    case "Section 2":
+                        return <SectionTwo key={index} dataComponent={comp} />
+
                     default:
                         return null
                 }
@@ -27,7 +34,7 @@ const Item = ({ ctx }: any) => {
     );
 }
 
-const GeneratorTabs = ({components}: any) => {
+const GeneratorTabs = ({ components }: any) => {
 
     return (
         <>

@@ -1,5 +1,11 @@
 import { automaticCarousel } from "../components/AutomaticCarousel"
 import { layoutImagesCards } from "../components/LayoutImagesCards"
+
+/* ----- Sections ----- */
+import { sectionTwo } from "../components/Sections/2"
+
+/* ----- Sections ----- */
+
 import { ITEM_TYPE } from "../utils/constants"
 import { __editorItemTitle, show } from "../utils/utils"
 
@@ -40,7 +46,8 @@ export const getSchema = () => ({
                     itemType: {
                         oneOf: [
                             layoutImagesCards,
-                            automaticCarousel
+                            automaticCarousel,
+                            sectionTwo
                         ],
                     },
                 },
