@@ -4,7 +4,8 @@ import { AutomaticCarousel } from './components/AutomaticCarousel';
 import { LayoutImagesCards } from './components/LayoutImagesCards';
 
 /* ----- Sections ----- */
-import { SectionTwo } from './components/Sections/2';
+import { Cp2Banner2 } from './components/Sections/cp2-banner2';
+import { Cp4Imagen1 } from './components/Sections/cp4-imagen1';
 /* ----- Sections ----- */
 
 
@@ -23,8 +24,11 @@ const Item = ({ ctx }: any) => {
                     case "Layout Images Cards":
                         return <LayoutImagesCards key={index} dataComponent={comp} />
 
-                    case "Section 2":
-                        return <SectionTwo key={index} dataComponent={comp} />
+                    case "Cp2 Banner 2":
+                        return <Cp2Banner2 key={index} dataComponent={comp} />
+
+                    case "Cp4 Imagen 1":
+                        return <Cp4Imagen1 key={index} dataComponent={comp} />
 
                     default:
                         return null

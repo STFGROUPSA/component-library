@@ -6,7 +6,7 @@ import { Image } from 'vtex.store-image';
 import style from './style.css';
 import { ITEM_TYPE } from '../../../utils/constants';
 
-export const SectionTwo = ({ dataComponent }: any) => {
+export const Cp2Banner2 = ({ dataComponent }: any) => {
 
     const { title, imageDesktop, imageMobile, backgroundColor1, backgroundColor2 } = dataComponent;
 
@@ -29,13 +29,13 @@ export const SectionTwo = ({ dataComponent }: any) => {
     )
 }
 
-export const sectionTwo = {
+export const cp2Banner2 = {
     title: 'Section Two',
     description: 'A section with an image and text',
     type: 'object',
     properties: {
         itemType: {
-            enum: [ITEM_TYPE.SECTION_TWO],
+            enum: [ITEM_TYPE.Cp2Banner2],
         },
         title: {
             title: 'Titlo de la sección',
