@@ -1,5 +1,8 @@
 import React from 'react'
 import { Video } from 'vtex.store-video'
+import { Image } from 'vtex.store-image';
+import { index as RichText } from 'vtex.rich-text';
+import { useDevice } from 'vtex.device-detector';
 
 import { ITEM_TYPE } from '../../utils/constants'
 import style from './style.css'
@@ -7,6 +10,7 @@ import style from './style.css'
 interface Cp6Video2Props {
     title: string;
     backgroundImage: string;
+    backgroundImageMobile: string;
     loop?: boolean;
     autoplay?: boolean;
     muted?: boolean;
@@ -17,6 +21,7 @@ interface Cp6Video2Props {
 export const Cp6Video2 = ({
     title,
     backgroundImage = '',
+    backgroundImageMobile = '',
     loop = false,
     autoplay = false,
     muted = false,
@@ -24,12 +29,15 @@ export const Cp6Video2 = ({
     videoUrl = "https://studiofco.myvtex.com/api/dataentities/VF/documents/6ad66fe0-2b88-4efc-8e7d-4e8e1f6f0d58/video/attachments/SPRING_STF_1920X1080.mp4",
 }: Cp6Video2Props) => {
 
-    console.log(backgroundImage, videoUrl, 'dataComponent')
+    const { isMobile } = useDevice();
 
     return (
-        <div className={style.containerImageVideo} style={{ backgroundImage: backgroundImage }}>
-            <h2>{title}</h2>
-            <div>
+        <div className={style.containerImageVideo}>
+            <div className={style.box1}>
+                <Image src={isMobile ? backgroundImageMobile : backgroundImage} />
+            </div>
+            <div className={style.box2}>
+                <RichText text={title} />
                 <Video
                     src={videoUrl}
                     loop={loop}
@@ -57,6 +65,13 @@ export const cp6Video2 = {
             type: 'string',
         },
         backgroundImage: {
+            title: 'Background Image',
+            type: 'string',
+            widget: {
+                'ui:widget': 'image-uploader',
+            }
+        },
+        backgroundImageMobile: {
             title: 'Background Image',
             type: 'string',
             widget: {
