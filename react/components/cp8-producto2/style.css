@@ -1,0 +1,47 @@
+.containerProducts {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+
+    .containerImage {
+        position: relative;
+        display: flex;
+
+        .containerTexts {
+            position: absolute;
+            bottom: 28px;
+            left: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            .paragraph {
+                margin: 0;
+                font-size: 12px;
+
+                @media (min-width: 1024px) {
+                    & {
+                        font-size: 14px;
+                    }
+                }
+
+            }
+
+            @media (min-width: 1024px) {
+                & {
+                    left: 24px;
+                    bottom: 67px;
+                }
+
+            }
+        }
+
+
+    }
+
+    @media (min-width: 1024px) {
+        & {
+            flex-direction: row;
+        }
+    }
+}

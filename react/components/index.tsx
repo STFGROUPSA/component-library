@@ -9,6 +9,7 @@ import { Cp5Video1 } from './cp5-video1';
 import { Cp6Video2 } from './cp6-video2';
 
 import style from "./style.css"
+import { Cp8Producto2 } from './cp8-producto2';
 
 export const ComponentManager = ({ components, gap, background }: any) => {
 
@@ -47,6 +48,9 @@ export const ComponentManager = ({ components, gap, background }: any) => {
 
                     case "Cp6 Video 2":
                         return <Cp6Video2 key={index} {...comp} />
+
+                    case "Cp8 Producto 2":
+                        return <Cp8Producto2 key={index} {...comp} />
 
                     default:
                         return null
