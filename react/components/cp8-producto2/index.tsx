@@ -14,7 +14,7 @@ interface Cp8Producto2Props {
     productName2: string;
     productPrice2: string;
     productUrl2: string;
-    colorText?: string;
+    colorTextAll?: string;
 }
 
 export const Cp8Producto2 = ({
@@ -26,7 +26,7 @@ export const Cp8Producto2 = ({
     productName2 = "Product 2",
     productPrice2 = "$150",
     productUrl2 = "#",
-    colorText = "#000000"
+    colorTextAll = "#000000"
 }: Cp8Producto2Props) => {
 
     return (
@@ -34,27 +34,24 @@ export const Cp8Producto2 = ({
             <Link to={productUrl1} className={style.containerImage}>
                 <Image src={image1} />
                 <div className={style.containerTexts}>
-                    <p className={style.paragraph} style={{ color: colorText }}>
+                    <p className={style.paragraph} style={{ color: colorTextAll}}>
                         {productName1}
                     </p>
-                    <p className={style.paragraph} style={{ color: colorText }}>
+                    <p className={style.paragraph} style={{ color: colorTextAll}}>
                         {productPrice1}
                     </p>
-
                 </div>
             </Link>
             <Link to={productUrl2} className={style.containerImage}>
                 <Image src={image2} />
                 <div className={style.containerTexts}>
-                    <p className={style.paragraph} style={{ color: colorText }}>
+                    <p className={style.paragraph} style={{ color: colorTextAll}}>
                         {productName2}
                     </p>
-                    <p className={style.paragraph} style={{ color: colorText }}>
+                    <p className={style.paragraph} style={{ color: colorTextAll}}>
                         {productPrice2}
                     </p>
-
                 </div>
-
             </Link>
         </div>
     )
@@ -106,11 +103,12 @@ export const cp8Producto2 = {
             title: 'Product URL 2',
             type: 'string',
         },
-        colorText: {
+        colorTextAll: {
             title: 'Color Text',
             type: 'string',
+            default: '#000000',
             widget: {
-                'ui:widget': 'color-picker',
+                'ui:widget': 'color',
             },
         }
     }
