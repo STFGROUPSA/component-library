@@ -6,6 +6,7 @@ import { cp1Banner1 } from "../components/cp1-banner1"
 import { cp2Banner2 } from "../components/cp2-banner2"
 import { cp3Producto1 } from "../components/cp3-producto1"
 import { cp4Imagen1 } from "../components/cp4-imagen1"
+import { cp5Video1 } from "../components/cp5-video1"
 
 import { ITEM_TYPE } from "../utils/constants"
 import { __editorItemTitle, show } from "../utils/utils"
@@ -52,6 +53,7 @@ export const getSchema = () => ({
                             cp2Banner2,
                             cp3Producto1,
                             cp4Imagen1,
+                            cp5Video1
                         ],
                     },
                 },

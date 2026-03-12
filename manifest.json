@@ -27,7 +27,8 @@
     "vtex.product-summary": "2.x",
     "vtex.product-context": "0.x",
     "vtex.product-summary-context": "0.x",
-    "vtex.order-manager": "0.x"
+    "vtex.order-manager": "0.x",
+    "vtex.store-video": "1.x"
   },
   "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
 }

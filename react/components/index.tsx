@@ -7,12 +7,11 @@ import { Cp4Imagen1 } from "./cp4-imagen1";
 import { LayoutImagesCards } from "./LayoutImagesCards";
 
 import style from "./style.css"
+import { Cp5Video1 } from './cp5-video1';
 
 export const ComponentManager = ({ components, gap, background }: any) => {
 
     const filteredComponents = components?.filter((tab: any) => tab.show) ?? [];
-
-    console.log(gap,background, "stylesContainer")
 
     const designeContainer: React.CSSProperties = {
         display: "flex",
@@ -41,6 +40,9 @@ export const ComponentManager = ({ components, gap, background }: any) => {
 
                     case "Cp4 Imagen 1":
                         return <Cp4Imagen1 key={index} {...comp} />
+
+                    case "Cp5 Video 1":
+                        return <Cp5Video1 key={index} {...comp} />
 
                     default:
                         return null

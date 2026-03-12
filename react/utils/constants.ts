@@ -4,4 +4,5 @@ export const ITEM_TYPE = {
     Cp2Banner2: 'Cp2 Banner 2',
     Cp3Producto1: 'Cp3 Producto 1',
     Cp4Imagen1: 'Cp4 Imagen 1',
+    Cp5Video1: 'Cp5 Video 1',
   }
