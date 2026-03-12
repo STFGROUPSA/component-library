@@ -4,11 +4,11 @@ import { useDevice } from 'vtex.device-detector';
 import { Image } from 'vtex.store-image';
 
 import style from './style.css';
-import { ITEM_TYPE } from '../../../utils/constants';
+import { ITEM_TYPE } from '../../utils/constants';
 
 export const Cp2Banner2 = ({ dataComponent }: any) => {
 
-    const { title, imageDesktop, imageMobile, backgroundColor1, backgroundColor2 } = dataComponent;
+    const { title = "SPRING", imageDesktop = "https://studiofco.vtexassets.com/assets/vtex.file-manager-graphql/images/7e1986d0-4413-45a5-b1dc-42c52e9e7837___21a208036691ad31185c1843f8650646.jpg", imageMobile = "https://studiofco.vtexassets.com/assets/vtex.file-manager-graphql/images/5f3bdfa3-7dc8-46f4-9578-fc09faba2c58___2479df257b3dbc9dadd2d7ede155152e.jpg", backgroundColor1 = "#bcbcbc", backgroundColor2 = "#7b7b7b" } = dataComponent;
 
     const { isMobile } = useDevice();
 
@@ -30,7 +30,7 @@ export const Cp2Banner2 = ({ dataComponent }: any) => {
 }
 
 export const cp2Banner2 = {
-    title: 'Section Two',
+    title: 'Cp2Banner2',
     description: 'A section with an image and text',
     type: 'object',
     properties: {
@@ -39,15 +39,14 @@ export const cp2Banner2 = {
         },
         title: {
             title: 'Titlo de la sección',
-            type: 'string',
-            default: 'SPRING'
+            type: 'string'
         },
         imageDesktop: {
             title: 'Image Desktop',
             type: 'string',
             widget: {
                 'ui:widget': 'image-uploader',
-            },
+            }
         },
         imageMobile: {
             title: 'Image Mobile',
@@ -61,7 +60,7 @@ export const cp2Banner2 = {
             type: 'string',
             widget: {
                 'ui:widget': 'color',
-            },
+            }
         },
         backgroundColor2: {
             title: 'Background Color Box 2',

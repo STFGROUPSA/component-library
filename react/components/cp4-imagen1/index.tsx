@@ -5,11 +5,11 @@ import { Image } from 'vtex.store-image';
 
 
 import style from './style.css';
-import { ITEM_TYPE } from '../../../utils/constants';
+import { ITEM_TYPE } from '../../utils/constants';
 
 export const Cp4Imagen1 = ({ dataComponent }: any) => {
 
-    const { text1, text2, text3, text4, imageDesktop1, imageMobile1, imageDesktop2, imageMobile2, imageDesktop3, imageMobile3 } = dataComponent;
+    const { text1 = "LA FRESCURA DE<br>LO NARUAL", text2 = "SPRING redefine el estilo masculino<br>con diseño funcional, texturas livianas<br>y tonos neutros con acentos sutilies.", text3 = "COMPRAR", text4 = "COMPRAR", imageDesktop1 = "https://studiofco.vtexassets.com/assets/vtex.file-manager-graphql/images/6d52b9e1-12d7-481f-801d-add389c27072___d7d8beec7078bb9f47119fc421b35c36.jpg", imageMobile1 = "https://studiofco.vtexassets.com/assets/vtex.file-manager-graphql/images/6d52b9e1-12d7-481f-801d-add389c27072___d7d8beec7078bb9f47119fc421b35c36.jpg", imageDesktop2 = "https://studiofco.vtexassets.com/assets/vtex.file-manager-graphql/images/c1e6b3d7-ac35-4f32-8869-45cd0cd1cd29___3c780de4aef7157a1b6b46f9d5eaed67.jpg", imageMobile2 = "https://studiofco.vtexassets.com/assets/vtex.file-manager-graphql/images/c1e6b3d7-ac35-4f32-8869-45cd0cd1cd29___3c780de4aef7157a1b6b46f9d5eaed67.jpg", imageDesktop3 = "https://studiofco.vtexassets.com/assets/vtex.file-manager-graphql/images/c1e6b3d7-ac35-4f32-8869-45cd0cd1cd29___3c780de4aef7157a1b6b46f9d5eaed67.jpg", imageMobile3 = "https://studiofco.vtexassets.com/assets/vtex.file-manager-graphql/images/c1e6b3d7-ac35-4f32-8869-45cd0cd1cd29___3c780de4aef7157a1b6b46f9d5eaed67.jpg" } = dataComponent;
 
     const { isMobile } = useDevice();
 
@@ -49,7 +49,7 @@ export const Cp4Imagen1 = ({ dataComponent }: any) => {
 }
 
 export const cp4Imagen1 = {
-    title: 'Section Four',
+    title: 'Cp4Imagen1',
     description: 'A section with an image and text',
     type: 'object',
     properties: {

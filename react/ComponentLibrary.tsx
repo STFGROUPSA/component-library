@@ -4,8 +4,8 @@ import { AutomaticCarousel } from './components/AutomaticCarousel';
 import { LayoutImagesCards } from './components/LayoutImagesCards';
 
 /* ----- Sections ----- */
-import { Cp2Banner2 } from './components/Sections/cp2-banner2';
-import { Cp4Imagen1 } from './components/Sections/cp4-imagen1';
+import { Cp2Banner2 } from './components/cp2-banner2';
+import { Cp4Imagen1 } from './components/cp4-imagen1';
 /* ----- Sections ----- */
 
 

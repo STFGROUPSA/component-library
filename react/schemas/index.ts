@@ -2,9 +2,8 @@ import { automaticCarousel } from "../components/AutomaticCarousel"
 import { layoutImagesCards } from "../components/LayoutImagesCards"
 
 /* ----- Sections ----- */
-import { cp2Banner2 } from "../components/Sections/cp2-banner2"
-import { cp4Imagen1 } from "../components/Sections/cp4-imagen1"
-
+import { cp2Banner2 } from "../components/cp2-banner2"
+import { cp4Imagen1 } from "../components/cp4-imagen1"
 /* ----- Sections ----- */
 
 import { ITEM_TYPE } from "../utils/constants"
@@ -49,7 +48,7 @@ export const getSchema = () => ({
                             layoutImagesCards,
                             automaticCarousel,
                             cp2Banner2,
-                            cp4Imagen1
+                            cp4Imagen1,
                         ],
                     },
                 },
