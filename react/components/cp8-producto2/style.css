@@ -24,7 +24,6 @@
                         font-size: 14px;
                     }
                 }
-
             }
 
             @media (min-width: 1024px) {
@@ -32,11 +31,8 @@
                     left: 24px;
                     bottom: 67px;
                 }
-
             }
         }
-
-
     }
 
     @media (min-width: 1024px) {
