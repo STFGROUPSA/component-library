@@ -3,8 +3,23 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-    padding-block: 30px;
-    margin-block: 10px;
+    padding-top: 15px;
+
+    .title-carousel {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+      font-size: 27px;
+      font-weight: 700;
+      color: #000000;
+      min-height: 32px;
+
+      @media (min-width: 1024px) {
+        font-size: 1.875vw;
+        min-height: 38px;
+      }
+    }
 
     .active-shelf {
       gap: 10px;
@@ -12,6 +27,8 @@
       @media (min-width: 1024px) {
         .image-link {
           min-width: 450px !important;
+          min-height: 481px !important;
+          max-height: 481px !important;
         }
       }
     }
@@ -30,8 +47,13 @@
         display: flex;
         flex-direction: column;
         min-width: 300px;
+        max-height: 321px;
         /* min-height: 450px; */
         text-decoration: none;
+
+        img {
+          height: 100%;
+        }
 
         .container-info {
           display: flex;
@@ -56,7 +78,7 @@
     .container-butonns {
       position: absolute;
       right: 30px;
-      top: 0;
+      top: 30px;
 
       .button-scroll-left,
       .button-scroll-right {

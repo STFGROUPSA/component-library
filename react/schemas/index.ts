@@ -1,11 +1,11 @@
-import { automaticCarousel } from "../components/AutomaticCarousel"
-import { layoutImagesCards } from "../components/LayoutImagesCards"
-import { cp1Banner1 } from "../components/cp1-banner1"
 
-/* ----- Sections ----- */
+import { componentManager } from "../components"
+import { layoutImagesCards } from "../components/LayoutImagesCards"
+
+import { cp1Banner1 } from "../components/cp1-banner1"
 import { cp2Banner2 } from "../components/cp2-banner2"
+import { cp3Producto1 } from "../components/cp3-producto1"
 import { cp4Imagen1 } from "../components/cp4-imagen1"
-/* ----- Sections ----- */
 
 import { ITEM_TYPE } from "../utils/constants"
 import { __editorItemTitle, show } from "../utils/utils"
@@ -25,6 +25,7 @@ export const getSchema = () => ({
     description: 'A collection of reusable components for building landing pages.',
     type: 'object',
     properties: {
+        ...componentManager,
         components: {
             title: "Components",
             type: 'array',
@@ -47,9 +48,9 @@ export const getSchema = () => ({
                     itemType: {
                         oneOf: [
                             layoutImagesCards,
-                            automaticCarousel,
                             cp1Banner1,
                             cp2Banner2,
+                            cp3Producto1,
                             cp4Imagen1,
                         ],
                     },

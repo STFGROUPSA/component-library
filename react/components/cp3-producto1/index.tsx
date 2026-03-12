@@ -5,6 +5,7 @@ import { Icon } from 'vtex.store-icons';
 
 import getProductsCollection from '../../graphql/getProductsCollection.gql';
 import style from './styles.css';
+import { ITEM_TYPE } from '../../utils/constants';
 
 interface Product {
     productName: string;
@@ -22,16 +23,29 @@ interface Product {
     }[];
 }
 
-interface AutomaticCarouselProps {
+interface Cp3Producto1Props {
+    title?: string;
+    showTitle?: boolean;
+    showArrows?: boolean;
+    showProgressBar?: boolean;
     activeShelf?: boolean;
-    collection: string;
+    collection?: string;
+    hideUnavailableItems?: boolean;
+    orderBy?: string;
+    totalProducts?: number;
 }
 
-export const AutomaticCarousel = ({
+export const Cp3Producto1 = ({
+    title = 'Productos relacionados',
+    showTitle = false,
+    showArrows = false,
+    showProgressBar = false,
     activeShelf = false,
-    collection
-}: AutomaticCarouselProps) => {
-
+    collection = '13205',
+    hideUnavailableItems = false,
+    orderBy = 'OrderByTopSaleDESC',
+    totalProducts = 30,
+}: Cp3Producto1Props) => {
     const [dataProducts, setDataProducts] = useState<Product[]>([]);
     const [loading, setLoading] = useState(true);
 
@@ -67,7 +81,7 @@ export const AutomaticCarousel = ({
     }, [loading]); // Se vuelve a bindear cuando los datos cargan y el ref existe
 
     const { data, loading: loadingQuery, error } = useQuery(getProductsCollection, {
-        variables: { collection, totalProducts: 30 },
+        variables: { collection, totalProducts, hideUnavailableItems, orderBy },
     });
 
     useEffect(() => {
@@ -103,6 +117,9 @@ export const AutomaticCarousel = ({
 
     return (
         <div className={style['container-carousel']}>
+            <span className={style['title-carousel']}>
+                {showTitle && title}
+            </span>
             <div
                 ref={containerRef}
                 className={`${style['container-image']} ${activeShelf ? style['active-shelf'] : ''}`}
@@ -117,59 +134,99 @@ export const AutomaticCarousel = ({
                         </Link>
                     );
                 })}
+                {showArrows && (
+                    <div className={style['container-butonns']}>
+                        <button
+                            className={style['button-scroll-left']}
+                            onMouseEnter={() => startScroll('left')}
+                            onMouseLeave={stopScroll}
+                            onTouchStart={() => startScroll('left')}
+                            onTouchEnd={stopScroll}
+                        >
+                            <Icon id={'nav-thin-caret--left'} />
+                        </button>
 
-                <div className={style['container-butonns']}>
-                    <button
-                        className={style['button-scroll-left']}
-                        onMouseEnter={() => startScroll('left')}
-                        onMouseLeave={stopScroll}
-                        onTouchStart={() => startScroll('left')}
-                        onTouchEnd={stopScroll}
-                    >
-                        <Icon id={'nav-thin-caret--left'} />
-                    </button>
+                        <button
+                            className={style['button-scroll-right']}
+                            onMouseEnter={() => startScroll('right')}
+                            onMouseLeave={stopScroll}
+                            onTouchStart={() => startScroll('right')}
+                            onTouchEnd={stopScroll}
+                        >
+                            <Icon id={'nav-thin-caret--right'} />
+                        </button>
+                    </div>
+                )}
+            </div>
 
-                    <button
-                        className={style['button-scroll-right']}
-                        onMouseEnter={() => startScroll('right')}
-                        onMouseLeave={stopScroll}
-                        onTouchStart={() => startScroll('right')}
-                        onTouchEnd={stopScroll}
-                    >
-                        <Icon id={'nav-thin-caret--right'} />
-                    </button>
+            {showProgressBar && (
+                <div className={style['scroll-progress-container']}>
+                    <div ref={barRef} className={style['scroll-progress-bar']} style={{ width: '0%' }} />
                 </div>
-            </div>
-
-            <div className={style['scroll-progress-container']}>
-                <div ref={barRef} className={style['scroll-progress-bar']} style={{ width: '0%' }} />
-            </div>
+            )}
         </div>
     );
 };
 
 
-export const automaticCarousel = {
+export const cp3Producto1 = {
     title: "Automatic Carousel",
     description: "A carousel that scrolls automatically when the user hovers over the arrows.",
     type: 'object',
     properties: {
         itemType: {
-            enum: ['Automatic Carousel'],
+            enum: [ITEM_TYPE.Cp3Producto1],
         },
         __editorItemTitle: {
             title: 'Sección name',
             type: 'string',
         },
+        showTitle: {
+            title: 'Mostrar título del carrusel',
+            type: 'boolean',
+            default: false,
+        },
+        showArrows: {
+            title: 'Mostrar flechas de navegación',
+            type: 'boolean',
+            default: false,
+        },
+        showProgressBar: {
+            title: 'Mostrar barra de progreso',
+            type: 'boolean',
+            default: false,
+        },
+        title: {
+            title: 'Título del carrusel',
+            type: 'string',
+            default: 'Productos relacionados',
+        },
+        totalProducts: {
+            title: 'Número total de productos a mostrar',
+            type: 'number',
+            default: 30,
+        },
         activeShelf: {
-            title: 'Active Shelf',
+            title: 'Activar la vista tipo shelf',
             type: 'boolean',
             default: false,
         },
         collection: {
-            title: 'Collection ID',
+            title: 'Colección de productos',
             type: 'string',
-            default: '14559',
+            default: '13205',
         },
+        hideUnavailableItems: {
+            title: 'Ocultar productos no disponibles',
+            type: 'boolean',
+            default: false,
+        },
+        orderBy: {
+            title: 'Ordenar productos por',
+            type: 'string',
+            enum: ['OrderByTopSaleDESC', 'OrderByReleaseDateDESC', 'OrderByPriceDESC', 'OrderByPriceASC'],
+            enumNames: ['Más vendidos', 'Fecha de lanzamiento', 'Precio descendente', 'Precio ascendente'],
+            default: 'OrderByTopSaleDESC',
+        }
     },
 }
