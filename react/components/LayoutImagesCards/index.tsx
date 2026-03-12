@@ -46,9 +46,17 @@ const sliderSettings = {
     slidesToScroll: 1
 };
 
-export const LayoutImagesCards = ({ dataComponent }: any) => {
+interface LayoutImagesCardsProps {
+    cardsReverse: boolean;
+    principalImage: Image[];
+    secundaryImage: Image[];
+}
 
-    const { cardsReverse, principalImage, secundaryImage } = dataComponent;
+export const LayoutImagesCards = ({
+    cardsReverse,
+    principalImage,
+    secundaryImage
+}: LayoutImagesCardsProps) => {
 
     const { isMobile } = useDevice();
 

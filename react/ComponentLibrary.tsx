@@ -6,6 +6,7 @@ import { LayoutImagesCards } from './components/LayoutImagesCards';
 /* ----- Sections ----- */
 import { Cp2Banner2 } from './components/cp2-banner2';
 import { Cp4Imagen1 } from './components/cp4-imagen1';
+import { Cp1Banner1 } from './components/cp1-banner1';
 /* ----- Sections ----- */
 
 
@@ -19,16 +20,19 @@ const Item = ({ ctx }: any) => {
 
                 switch (comp?.itemType) {
                     case "Automatic Carousel":
-                        return <AutomaticCarousel key={index} dataComponent={comp} />
+                        return <AutomaticCarousel key={index} {...comp} />
 
                     case "Layout Images Cards":
-                        return <LayoutImagesCards key={index} dataComponent={comp} />
+                        return <LayoutImagesCards key={index} {...comp} />
+
+                    case "Cp1 Banner 1":
+                        return <Cp1Banner1 key={index} {...comp} />
 
                     case "Cp2 Banner 2":
-                        return <Cp2Banner2 key={index} dataComponent={comp} />
+                        return <Cp2Banner2 key={index} {...comp} />
 
                     case "Cp4 Imagen 1":
-                        return <Cp4Imagen1 key={index} dataComponent={comp} />
+                        return <Cp4Imagen1 key={index} {...comp} />
 
                     default:
                         return null
@@ -38,7 +42,7 @@ const Item = ({ ctx }: any) => {
     );
 }
 
-const GeneratorTabs = ({ components }: any) => {
+const ComponentLibrary = ({ components }: any) => {
 
     return (
         <>
@@ -47,7 +51,7 @@ const GeneratorTabs = ({ components }: any) => {
     )
 }
 
-export default GeneratorTabs
+export default ComponentLibrary
 
-GeneratorTabs.getSchema = () => getSchema()
+ComponentLibrary.getSchema = () => getSchema()
 

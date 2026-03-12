@@ -7,142 +7,145 @@ import getProductsCollection from '../../graphql/getProductsCollection.gql';
 import style from './styles.css';
 
 interface Product {
-  productName: string;
-  link: string;
-  priceRange?: {
-    listPrice: {
-      lowPrice: number;
-      highPrice: number;
+    productName: string;
+    link: string;
+    priceRange?: {
+        listPrice: {
+            lowPrice: number;
+            highPrice: number;
+        };
     };
-  };
-  items: {
-    images: {
-      imageUrl: string;
+    items: {
+        images: {
+            imageUrl: string;
+        }[];
     }[];
-  }[];
 }
 
-export const AutomaticCarousel = ({ dataComponent }: any) => {
+interface AutomaticCarouselProps {
+    activeShelf?: boolean;
+    collection: string;
+}
 
-    const {
-        activeShelf = false,
-        collection
-    } = dataComponent;
+export const AutomaticCarousel = ({
+    activeShelf = false,
+    collection
+}: AutomaticCarouselProps) => {
 
-  const [dataProducts, setDataProducts] = useState<Product[]>([]);
-  const [loading, setLoading] = useState(true);
+    const [dataProducts, setDataProducts] = useState<Product[]>([]);
+    const [loading, setLoading] = useState(true);
 
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const barRef = useRef<HTMLDivElement | null>(null);
-  const scrollInterval = useRef<number | null>(null);
+    const containerRef = useRef<HTMLDivElement | null>(null);
+    const barRef = useRef<HTMLDivElement | null>(null);
+    const scrollInterval = useRef<number | null>(null);
 
-  // 1. Función única para actualizar la barra
-  const updateBarProgress = () => {
-    if (!containerRef.current || !barRef.current) return;
+    // 1. Función única para actualizar la barra
+    const updateBarProgress = () => {
+        if (!containerRef.current || !barRef.current) return;
 
-    const el = containerRef.current;
-    const maxScroll = el.scrollWidth - el.clientWidth;
+        const el = containerRef.current;
+        const maxScroll = el.scrollWidth - el.clientWidth;
 
-    // Evitamos división por cero si no hay scroll disponible
-    if (maxScroll <= 0) return;
+        // Evitamos división por cero si no hay scroll disponible
+        if (maxScroll <= 0) return;
 
-    const percent = (el.scrollLeft / maxScroll) * 100;
-    barRef.current.style.width = `${Math.min(100, Math.max(0, percent))}%`;
-  };
-
-  // 2. Efecto para escuchar el scroll manual (dedos/mouse)
-  useEffect(() => {
-    const container = containerRef.current;
-    if (container) {
-      container.addEventListener('scroll', updateBarProgress);
-    }
-    return () => {
-      if (container) {
-        container.removeEventListener('scroll', updateBarProgress);
-      }
+        const percent = (el.scrollLeft / maxScroll) * 100;
+        barRef.current.style.width = `${Math.min(100, Math.max(0, percent))}%`;
     };
-  }, [loading]); // Se vuelve a bindear cuando los datos cargan y el ref existe
 
-  const { data, loading: loadingQuery, error } = useQuery(getProductsCollection, {
-    variables: { collection, totalProducts: 30 },
-  });
+    // 2. Efecto para escuchar el scroll manual (dedos/mouse)
+    useEffect(() => {
+        const container = containerRef.current;
+        if (container) {
+            container.addEventListener('scroll', updateBarProgress);
+        }
+        return () => {
+            if (container) {
+                container.removeEventListener('scroll', updateBarProgress);
+            }
+        };
+    }, [loading]); // Se vuelve a bindear cuando los datos cargan y el ref existe
 
-  useEffect(() => {
-    if (loadingQuery) {
-      setLoading(true);
-      return;
-    }
-    if (data) {
-      setLoading(false);
-      setDataProducts(data.products);
-    }
-  }, [data, loadingQuery, error]);
+    const { data, loading: loadingQuery, error } = useQuery(getProductsCollection, {
+        variables: { collection, totalProducts: 30 },
+    });
 
-  const startScroll = (direction: 'left' | 'right') => {
-    stopScroll();
-    scrollInterval.current = window.setInterval(() => {
-      if (!containerRef.current) return;
-      containerRef.current.scrollLeft += direction === 'left' ? -8 : 8;
+    useEffect(() => {
+        if (loadingQuery) {
+            setLoading(true);
+            return;
+        }
+        if (data) {
+            setLoading(false);
+            setDataProducts(data.products);
+        }
+    }, [data, loadingQuery, error]);
 
-      // Ya no necesitamos actualizar la barra aquí manualmente,
-      // porque el evento 'scroll' se disparará solo.
-    }, 10);
-  };
+    const startScroll = (direction: 'left' | 'right') => {
+        stopScroll();
+        scrollInterval.current = window.setInterval(() => {
+            if (!containerRef.current) return;
+            containerRef.current.scrollLeft += direction === 'left' ? -8 : 8;
 
-  const stopScroll = () => {
-    if (scrollInterval.current) {
-      clearInterval(scrollInterval.current);
-      scrollInterval.current = null;
-    }
-  };
+            // Ya no necesitamos actualizar la barra aquí manualmente,
+            // porque el evento 'scroll' se disparará solo.
+        }, 10);
+    };
 
-  if (loading) return null;
+    const stopScroll = () => {
+        if (scrollInterval.current) {
+            clearInterval(scrollInterval.current);
+            scrollInterval.current = null;
+        }
+    };
 
-  return (
-    <div className={style['container-carousel']}>
-      <div
-        ref={containerRef}
-        className={`${style['container-image']} ${activeShelf ? style['active-shelf'] : ''}`}
-        id="responsiveContainerLinkList"
-        style={{ overflowX: 'auto', scrollBehavior: 'smooth' }} // Asegúrate de tener scroll horizontal habilitado
-      >
-        {dataProducts.map((product, index) => {
-          const { productName, link, items } = product;
-          return (
-            <Link to={link} className={style['image-link']} key={index}>
-              <img src={items[0]?.images[0]?.imageUrl} alt={productName} />
-            </Link>
-          );
-        })}
+    if (loading) return null;
 
-        <div className={style['container-butonns']}>
-          <button
-            className={style['button-scroll-left']}
-            onMouseEnter={() => startScroll('left')}
-            onMouseLeave={stopScroll}
-            onTouchStart={() => startScroll('left')}
-            onTouchEnd={stopScroll}
-          >
-            <Icon id={'nav-thin-caret--left'} />
-          </button>
+    return (
+        <div className={style['container-carousel']}>
+            <div
+                ref={containerRef}
+                className={`${style['container-image']} ${activeShelf ? style['active-shelf'] : ''}`}
+                id="responsiveContainerLinkList"
+                style={{ overflowX: 'auto', scrollBehavior: 'smooth' }} // Asegúrate de tener scroll horizontal habilitado
+            >
+                {dataProducts.map((product, index) => {
+                    const { productName, link, items } = product;
+                    return (
+                        <Link to={link} className={style['image-link']} key={index}>
+                            <img src={items[0]?.images[0]?.imageUrl} alt={productName} />
+                        </Link>
+                    );
+                })}
 
-          <button
-            className={style['button-scroll-right']}
-            onMouseEnter={() => startScroll('right')}
-            onMouseLeave={stopScroll}
-            onTouchStart={() => startScroll('right')}
-            onTouchEnd={stopScroll}
-          >
-            <Icon id={'nav-thin-caret--right'} />
-          </button>
+                <div className={style['container-butonns']}>
+                    <button
+                        className={style['button-scroll-left']}
+                        onMouseEnter={() => startScroll('left')}
+                        onMouseLeave={stopScroll}
+                        onTouchStart={() => startScroll('left')}
+                        onTouchEnd={stopScroll}
+                    >
+                        <Icon id={'nav-thin-caret--left'} />
+                    </button>
+
+                    <button
+                        className={style['button-scroll-right']}
+                        onMouseEnter={() => startScroll('right')}
+                        onMouseLeave={stopScroll}
+                        onTouchStart={() => startScroll('right')}
+                        onTouchEnd={stopScroll}
+                    >
+                        <Icon id={'nav-thin-caret--right'} />
+                    </button>
+                </div>
+            </div>
+
+            <div className={style['scroll-progress-container']}>
+                <div ref={barRef} className={style['scroll-progress-bar']} style={{ width: '0%' }} />
+            </div>
         </div>
-      </div>
-
-      <div className={style['scroll-progress-container']}>
-        <div ref={barRef} className={style['scroll-progress-bar']} style={{ width: '0%' }} />
-      </div>
-    </div>
-  );
+    );
 };
 
 
