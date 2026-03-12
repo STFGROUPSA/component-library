@@ -17,6 +17,7 @@ export const Cp1Banner1 = ({ imageDesktop, imageMobile, link }: Cp1Banner1Props)
     const { isMobile } = useDevice();
 
     console.log(imageDesktop, imageMobile, 'dataComponent')
+
     return (
         <div className={style.containerBanner}>
             <Link to={link} className={style.banner}>

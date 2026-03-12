@@ -1,0 +1,6 @@
+.containerVideo {
+    .videoContainer {
+        display: flex;
+        border: none;
+    }
+}

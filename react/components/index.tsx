@@ -1,13 +1,14 @@
 import React from 'react'
 
+import { LayoutImagesCards } from "./LayoutImagesCards";
 import { Cp1Banner1 } from "./cp1-banner1";
 import { Cp2Banner2 } from "./cp2-banner2";
 import { Cp3Producto1 } from "./cp3-producto1";
 import { Cp4Imagen1 } from "./cp4-imagen1";
-import { LayoutImagesCards } from "./LayoutImagesCards";
+import { Cp5Video1 } from './cp5-video1';
+import { Cp6Video2 } from './cp6-video2';
 
 import style from "./style.css"
-import { Cp5Video1 } from './cp5-video1';
 
 export const ComponentManager = ({ components, gap, background }: any) => {
 
@@ -43,6 +44,9 @@ export const ComponentManager = ({ components, gap, background }: any) => {
 
                     case "Cp5 Video 1":
                         return <Cp5Video1 key={index} {...comp} />
+
+                    case "Cp6 Video 2":
+                        return <Cp6Video2 key={index} {...comp} />
 
                     default:
                         return null

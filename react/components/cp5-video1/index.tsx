@@ -2,6 +2,8 @@ import React from 'react'
 import { Video } from 'vtex.store-video'
 import { ITEM_TYPE } from '../../utils/constants';
 
+import style from './style.css'
+
 interface Cp5Video1Props {
     loop?: boolean;
     autoplay?: boolean;
@@ -18,9 +20,8 @@ export const Cp5Video1 = ({
     videoUrl = "https://studiofco.myvtex.com/api/dataentities/VF/documents/6ad66fe0-2b88-4efc-8e7d-4e8e1f6f0d58/video/attachments/SPRING_STF_1920X1080.mp4",
 }: Cp5Video1Props) => {
 
-    console.log(loop, autoplay, muted, playsInline, videoUrl, "Cp5Video1")
     return (
-        <div>
+        <div className={style.containerVideo}>
             <Video
                 src={videoUrl}
                 loop={loop}
